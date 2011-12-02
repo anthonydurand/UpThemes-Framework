@@ -46,7 +46,7 @@ if($encoded_check):
                 "id" => "export_file",
                 "type" => "button",
                 "value" => __("Download File","upfw"),
-                "attr" => array("ONCLICK" => "window.location.href='" . THEME_DIR . '/admin/export-options.php?f=upthemes_'.UPTHEMES_SHORT_NAME.'_'.date('mdy').'&e='.$encoded."'")
+                "attr" => array("ONCLICK" => "window.location.href='" . THEME_DIR . '/framework/admin/export-options.php?f=upthemes_'.UPTHEMES_SHORT_NAME.'_'.date('mdy').'&e='.$encoded."'")
         );
 endif;
 

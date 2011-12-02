@@ -72,9 +72,14 @@ function upfw_enqueue_font_css(){
                 $selector = ( isset( $property['selector'] ) ? $property['selector'] : false );
                 $font_family = ( isset( $up_fonts[$font]['font_family'] ) ? $up_fonts[$font]['font_family'] : false );
                 $font_family = $font_family ? "font-family:\"{$font_family}\";" : '';
-                
+                $color = ( isset( $property['color'] ) ? $property['color'] : false );
+                $color = $color ? "color:{$color};" : '';
+                $hovercolor = ( isset( $property['hovercolor'] ) ? $property['hovercolor'] : false );
+                // var_dump($hovercolor);
+                $hovercolor = $hovercolor ? "color:{$hovercolor};" : '';
+                // var_dump($hovercolor);
                 $stylesheet = $up_fonts[$font]['style'];
-                
+
                 preg_match("/\.css/i", $stylesheet, $matches);
 
                 if( $matches )
@@ -82,12 +87,15 @@ function upfw_enqueue_font_css(){
 	                
                 if( $stylesheet ) wp_enqueue_style( $font, $stylesheet, null, null );
                 
-                if( $selector ) $css .= $selector."\n{\n  {$font_family}\n  {$fontsize}\n  {$lineheight}\n  {$fontstyle}\n  {$letterspacing}\n  {$fontweight}\n  {$texttransform}\n  {$textdecoration}\n  {$textshadow_normal}\n  {$textshadow_moz}\n  {$textshadow_webkit}\n}\n\n";
-                
+                if( $selector ) $css .= $selector."\n{\n  {$font_family}\n  {$fontsize}\n  {$color}\n  {$lineheight}\n  {$fontstyle}\n  {$letterspacing}\n  {$fontweight}\n  {$texttransform}\n  {$textdecoration}\n  {$textshadow_normal}\n  {$textshadow_moz}\n  {$textshadow_webkit}\n}\n\n";
+
+                if( $hovercolor ) $css .= $selector.":hover {\n {$hovercolor}\n}\n\n";
+
+
             endforeach;
         endforeach;
     endif;
-    
+
     global $up_fonts_css;
     $up_fonts_css = $css;
 }

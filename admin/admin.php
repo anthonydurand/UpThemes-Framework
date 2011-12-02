@@ -3,7 +3,7 @@
 /******
 ** UpThemes Framework Version
 *************************************/
-define('UPTHEMES_VER', '2.0.2');
+define('UPTHEMES_VER', '2.0');
 
 /******
 ** Theme init hook
@@ -49,10 +49,10 @@ function upfw_generate_theme_data(){
 	define('UPTHEMES_SHORT_NAME', $theme_shortname);
 	define('UPTHEMES_THEME_VER', $theme_version);
 
-	if( file_exists(TEMPLATEPATH.'/admin/admin.php') ):
+	if( file_exists(TEMPLATEPATH.'/framework/admin/admin.php') ):
 		define( 'THEME_PATH' , TEMPLATEPATH );
 		define( 'THEME_DIR' , get_template_directory_uri() );
-	elseif( file_exists(STYLESHEETPATH.'/admin/admin.php') ):
+	elseif( file_exists(STYLESHEETPATH.'/framework/admin/admin.php') ):
 		define( 'THEME_PATH' , STYLESHEETPATH );
 		define( 'THEME_DIR' , get_stylesheet_directory_uri() );
 	endif;
@@ -210,13 +210,13 @@ function is_upthemes_page(){
 *************************************/
 function upfw_queue_scripts_styles(){
 
-	$upthemes =  THEME_DIR.'/admin/';
+	$upthemes =  THEME_DIR.'/framework/admin/';
 	
 	wp_enqueue_style('up_framework',$upthemes."css/up_framework.css");
 	
 	//Check if theme-options/style.css exists and load it
-	if(file_exists(THEME_PATH ."/theme-options/style.css")):
-		wp_enqueue_style('theme_options',THEME_DIR."/theme-options/style.css");
+	if(file_exists(THEME_PATH ."/framework/theme-options/style.css")):
+		wp_enqueue_style('theme_options',THEME_DIR."/framework/theme-options/style.css");
 	endif;
 	
 	wp_enqueue_style('farbtastic');
@@ -354,7 +354,7 @@ function upfw_create_options_tabs(){
 
 	// Discover Options Files and Create Tabs Array
 	if( is_admin() ):
-	    $path = THEME_PATH."/theme-options/";
+	    $path = THEME_PATH."/framework/theme-options/";
 	    $directory = @opendir($path) or wp_die("Cannot open theme-options folder in the ".UPTHEMES_NAME." folder.");
 	    while (false !== ($file = readdir($directory))) {
 			if(!preg_match('/_/', $file)) continue;
@@ -455,7 +455,7 @@ function upfw_upthemes_admin() {
 
     $name = __('Theme Options','upfw');
 
-	$theme_options_icon = apply_filters('theme_options_icon',THEME_DIR.'/admin/images/upfw_ico_up_16x16.png');
+	$theme_options_icon = apply_filters('theme_options_icon',THEME_DIR.'/framework/admin/images/upfw_ico_up_16x16.png');
 
     add_menu_page($name, $name, 'edit_theme_options', 'upthemes', 'upthemes_admin_home', $theme_options_icon, 59);
   
@@ -470,9 +470,8 @@ function upfw_upthemes_admin() {
 	endif;
 
 	//Static subpages
-	add_submenu_page('upthemes', __('Import/Export','upfw'), __('Import/Export','upfw'), 'edit_theme_options', 'upthemes#/import-export', 'upthemes_admin_import_export');
-	add_submenu_page('upthemes', __('Documentation','upfw'), __('Documentation','upfw'), 'edit_theme_options', 'upthemes-docs', 'upthemes_admin_docs');
-	add_submenu_page('upthemes', __('Buy Themes','upfw'), __('Buy Themes','upfw'), 'edit_theme_options', 'upthemes-buy', 'upthemes_admin_buy');
+	add_submenu_page('upthemes', __('Import/Export','upfw'), __('Import/Export','upfw'), '10', 'upthemes#/import-export', 'upthemes_admin_import_export');
+	add_submenu_page('upthemes', __('Documentation','upfw'), __('Documentation','upfw'), '10', 'upthemes-docs', 'upthemes_admin_docs');
 
 }
 
@@ -815,8 +814,7 @@ add_action('upfw_admin_header','upfw_admin_header_close',500);
 function upfw_default_header_links(){ ?>
 
 	<li class="support"><a href="http://upthemes.com/forum/"><?php _e("Support","upfw"); ?></a></li>
-	<li class="documentation"><a href="<?php echo get_admin_url(); ?>admin.php?page=upthemes-docs"><?php _e("Theme Documentation","upfw"); ?></a></li>
-	<li class="buy-themes"><a href="<?php echo get_admin_url(); ?>admin.php?page=upthemes-buy"><?php _e("Buy Themes","upfw"); ?></a></li> <?php	
+	<li class="documentation"><a href="<?php echo get_admin_url(); ?>admin.php?page=upthemes-docs"><?php _e("Theme Documentation","upfw"); ?></a></li> <?php	
 
 }
 

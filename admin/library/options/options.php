@@ -37,7 +37,7 @@ function upfw_text_list($value,$attr){
                     <script type="text/javascript">
                         jQuery(function(){
                             jQuery('#<?php echo $value['id']; ?>_list p.add_text_list a').live('click', function(){
-                                jQuery(this).parents('li').find('div.text_list').append('<div class="entry"><input class="text_list" type="text" name="<?php echo $value['id']; ?>[]" /><p class="delete_text_list"><a href="#"><img src="<?php echo THEME_DIR;?>/admin/images/upfw_ico_delete.png" alt="Delete Text Field" /></a></p></div><div class="clear"></div>');
+                                jQuery(this).parents('li').find('div.text_list').append('<div class="entry"><input class="text_list" type="text" name="<?php echo $value['id']; ?>[]" /><p class="delete_text_list"><a href="#"><img src="<?php echo THEME_DIR;?>/framework/admin/images/upfw_ico_delete.png" alt="Delete Text Field" /></a></p></div><div class="clear"></div>');
                                 jQuery(this).parents('li').find('input.hiddentext_list').remove();
                                 return false;
                             });
@@ -63,7 +63,7 @@ function upfw_text_list($value,$attr){
                                         foreach($up_options->$value['id'] as $text):?>
                                             <div class="entry">
                                                 <input class="text_list" type="text" name="<?php echo $value['id']; ?>[]" id="<?php echo $value['id']; ?>" value="<?php echo $text?>" <?php echo $attr; ?> />
-                                                <p class="delete_text_list"><a href="#"><img src="<?php echo THEME_DIR; ?>/admin/images/upfw_ico_delete.png" alt="Delete Text Field" /></a></p>
+                                                <p class="delete_text_list"><a href="#"><img src="<?php echo THEME_DIR; ?>/framework/admin/images/upfw_ico_delete.png" alt="Delete Text Field" /></a></p>
                                                 <div class="clear"></div>
                                             </div>
                                         <?php endforeach;
@@ -75,7 +75,7 @@ function upfw_text_list($value,$attr){
                                             foreach($list as $text):?>
                                                     <div class="entry">
                                                         <input class="text_list" type="text" name="<?php echo $value['id']; ?>[]" id="<?php echo $value['id']; ?>" value="<?php echo $text?>" <?php echo $attr; ?> />
-                                                        <p class="delete_text_list"><a href="#"><img src="<?php echo THEME_DIR; ?>/admin/images/upfw_ico_delete.png" alt="Delete Text Field" /></a></p>
+                                                        <p class="delete_text_list"><a href="#"><img src="<?php echo THEME_DIR; ?>/framework/admin/images/upfw_ico_delete.png" alt="Delete Text Field" /></a></p>
                                                         <div class="clear"></div>
                                                     </div>
                                             <?php endforeach;
@@ -140,7 +140,8 @@ function upfw_select($value,$attr){
                                     $i = $value['options'];
                                     foreach( $i as $k => $v ) : 
 										?>
-                                        <option value="<?php echo $v; ?>" <?php selected( ( isset( $vlaue['value'] ) && $v == $vlaue['value'] ) || ( isset( $up_options->$value['id'] ) && $v == $up_options->$value['id'] ) ); ?>><?php echo $k; ?></option>
+                                        
+                                        <option value="<?php echo $v; ?>" <?php selected( ( isset( $value['value'] ) && $v == $value['value'] ) || ( isset( $up_options->$value['id'] ) && $v == $up_options->$value['id'] ) ); ?>><?php echo $k; ?></option>
 										<?php 
 									endforeach;
                                 endif;
@@ -284,7 +285,7 @@ function upfw_color($value,$attr){
                     <fieldset class="data">
                         <div class="inner">
                             <span class="colorPickerWrapper">
-                                <a href="#" class="clear"><img src="<?php echo THEME_DIR; ?>/admin/images/upfw_ico_delete.png" alt="Delete Text Field" /></a>
+                                <a href="#" class="clear"><img src="<?php echo THEME_DIR; ?>/framework/admin/images/upfw_ico_delete.png" alt="Delete Text Field" /></a>
                                 <input type="text" class="popup-colorpicker" id="<?php echo $value['id']; ?>" name="<?php echo $value['id']; ?>" value="<?php if( isset( $up_options->$value['id'] ) ) : echo $up_options->$value['id']; else: echo $value['value']; endif;?>" <?php echo $attr; ?> />
                                 <div class="popup-guy">
                                     <div class="popup-guy-inside">
@@ -316,7 +317,7 @@ function upfw_image($value,$attr){
                         //View UpThemes Gallery
                         jQuery('a#<?php echo $value['id']; ?>viewgallery').toggle(
                             function(){
-                                jQuery(this).text('Hide Gallery');
+                                jQuery(this).text('Cacher la galerie personnalisée');
                                 jQuery('#<?php echo $value['id']; ?>allimages').slideDown();
                                 
 								var data = {
@@ -332,7 +333,7 @@ function upfw_image($value,$attr){
 								return false;
                             },
                             function(){
-                                jQuery(this).text('Select from the UpThemes Gallery');
+                                jQuery(this).text('Choisir depuis la galerie personnalisée');
                                 jQuery('#<?php echo $value['id']; ?>allimages').slideUp();
                                 								                                    
                                 return false;
@@ -342,7 +343,7 @@ function upfw_image($value,$attr){
                         jQuery("#container-<?php echo $value['id']; ?>").find('a.clear').live('click', function(e){
                     		
                     		e.preventDefault();
-							jQuery('#<?php echo $value['id']; ?>preview').html('<img src="<?php echo THEME_DIR; ?>/admin/images/upfw_noimage.gif" alt="No Image" />');
+							jQuery('#<?php echo $value['id']; ?>preview').html('<img src="<?php echo THEME_DIR; ?>/framework/admin/images/upfw_noimage.gif" alt="No Image" />');
 							jQuery('input#<?php echo $value['id']; ?>').attr('value', '');
 							
 							jQuery(this).hide();
@@ -375,7 +376,7 @@ function upfw_image($value,$attr){
                         var <?php echo $value['id']; ?>=jQuery('div.uploadify button#<?php echo $value['id']; ?>');
                         var status=jQuery('#<?php echo $value['id']; ?>status');
                         new AjaxUpload(<?php echo $value['id']; ?>, {
-                            action: '<?php echo THEME_DIR; ?>/admin/upload-file.php',
+                            action: '<?php echo THEME_DIR; ?>/framework/admin/upload-file.php',
                             name: '<?php echo $upload_security?>',
                             data: {
                             	upload_path : '<?php echo base64_encode(UPFW_UPLOADS_DIR); ?>'
@@ -425,11 +426,11 @@ function upfw_image($value,$attr){
                         if($up_options->$value['id']):
                             echo "<img src='".$up_options->$value['id']."' alt='Preview Image' />";
                         	echo "</div>";
-	                        echo '<a href="#" class="clear"><img src="' . THEME_DIR . '/admin/images/upfw_ico_delete.png" alt="' . __("Delete Text Field","upfw") . '" /></a>';
+	                        echo '<a href="#" class="clear"><img src="' . THEME_DIR . '/framework/admin/images/upfw_ico_delete.png" alt="' . __("Delete Text Field","upfw") . '" /></a>';
                         else:
-                        	echo "<img src='".THEME_DIR."/admin/images/upfw_noimage.gif' alt='No Image Available' />";
+                        	echo "<img src='".THEME_DIR."/framework/admin/images/upfw_noimage.gif' alt='No Image Available' />";
                         	echo "</div>";
-	                        echo '<a href="#" class="clear" style="display: none;"><img src="' . THEME_DIR . '/admin/images/upfw_ico_delete.png" alt="' . __("Delete Text Field","upfw") . '" /></a>';
+	                        echo '<a href="#" class="clear" style="display: none;"><img src="' . THEME_DIR . '/framework/admin/images/upfw_ico_delete.png" alt="' . __("Delete Text Field","upfw") . '" /></a>';
 	                    endif;?>
 
                     </fieldset>
@@ -454,7 +455,7 @@ function upfw_image($value,$attr){
 
                                 <!-- View Gallery -->
                                 <div class="viewgallery">
-                                    <a id="<?php echo $value['id']; ?>viewgallery" href="#"><?php _e("Select from the UpThemes Gallery","upfw"); ?></a>
+                                    <a id="<?php echo $value['id']; ?>viewgallery" href="#"><?php _e("Choisir depuis la galerie personnalisée","upfw"); ?></a>
                                 </div>
                                 
                                 <!-- All Images -->
@@ -841,7 +842,20 @@ function upfw_typography($value,$attr){
     $letterspacing = $letterspacing ? $letterspacing : '0px';
     $show_selector = $value['show_selector'];
     $selector = $option['selector'] ? $option['selector'] : $value['selector'];
-    $fonts = $up_fonts; ?>
+    $fonts = $up_fonts;
+    // Ajout
+    $color_id = $value['id']."_color";
+    $color = $up_options->$color_id;
+    $color = $option['color'] ? $option['color'] : $color;
+    $color = $color ? $color : '#555555';
+
+    $hovercolor_id = $value['id']."_hover_color";
+    $hovercolor = $up_options->$hovercolor_id;
+    $hovercolor = $option['hovercolor'] ? $option['hovercolor'] : $hovercolor;
+    $hovercolor = $hovercolor ? $hovercolor : $color; //si $hovercolor non défini on lui donne la couleur de $color
+
+    // Fin ajout
+    ?>
     
     <li class="type-<?php echo $value['type'];?> typography" id="container-<?php echo $value['id']; ?>">
         <fieldset class="title">
@@ -891,7 +905,11 @@ function upfw_typography($value,$attr){
 	                                'textdecoration' => $option['textdecoration'],
 	                                'texttransform' => $option['texttransform'],
 	                                'letterspacing' => $option['letterspacing'],
-	                                'fontsize' => $option['fontsize'],
+                                    'fontsize' => $option['fontsize'],
+                                    // Ajout
+	                                'color' => $color,
+                                    'hovercolor' => $hovercolor,
+                                    // Fin d'ajout
 	                                'id' => $value['id']
 	                            );
 	                            /* Check For Hardcoded Fonts */
@@ -1010,7 +1028,6 @@ function upfw_typography($value,$attr){
 	                        <div id="<?php echo $value['id'];?>-letter-spacing" class="font-slider"></div>
 	                        <input type="hidden" id="<?php echo $value['id']; ?>_letterspacing" name="<?php echo $value['id']; ?>[letterspacing]" value="<?php echo $letterspacing;?>">
 	                    </div>
-
 					</fieldset>
                 <?php else:?>
                     <p>Please add a selector to your typography option array. Example: 'selector' => 'h1 a'</p>
@@ -1021,7 +1038,7 @@ function upfw_typography($value,$attr){
         <?php if($selector):?>
         <div class="font-preview">
             <label class="font-preview-label"><?php _e('Preview', 'upfw');?></label>
-            <div id="font-preview" class="<?php echo $value['id']; ?>_type_preview" style="font-family:<?php echo $fonts[$family]['font_family']; ?>; font-size: <?php echo $fontsize; ?>; font-style: <?php echo $fontstyle; ?>; letter-spacing: <?php echo $letterspacing;?>; line-height:<?php echo $lineheight;?>; text-transform:<?php echo $texttransform;?>; text-decoration:<?php echo $textdecoration;?>; font-weight:<?php echo $fontweight_faux;?>; text-shadow:<?php echo $textshadow; ?>; -moz-text-shadow:<?php echo $textshadow; ?>; -webkit-text-shadow:<?php echo $textshadow; ?>;  "><?php _e('Pack my box with five dozen liquor jugs.', 'upfw');?><br /><?php _e('The quick brown fox jumps over the lazy dog. ', 'upfw');?></div>
+            <div id="font-preview" class="<?php echo $value['id']; ?>_type_preview" style="font-family:<?php echo $fonts[$family]['font_family']; ?>; font-size: <?php echo $fontsize; ?>; font-style: <?php echo $fontstyle; ?>; letter-spacing: <?php echo $letterspacing;?>; line-height:<?php echo $lineheight;?>; text-transform:<?php echo $texttransform;?>; text-decoration:<?php echo $textdecoration;?>; font-weight:<?php echo $fontweight_faux;?>; text-shadow:<?php echo $textshadow; ?>; -moz-text-shadow:<?php echo $textshadow; ?>; -webkit-text-shadow:<?php echo $textshadow; ?>; color:<?php echo $color;?>;  "><?php _e('Pack my box with five dozen liquor jugs.', 'upfw');?><br /><?php _e('The quick brown fox jumps over the lazy dog. ', 'upfw');?></div>
         </div>
         
         <script type="text/javascript">

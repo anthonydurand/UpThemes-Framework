@@ -463,9 +463,15 @@
 #upthemes_framework #up_main #up_sidebar li.import-export a{
 	background: url("../images/upfw_ico_importexport.png") no-repeat 8px 8px;
 }
+#upthemes_framework #up_main #up_sidebar li.Typographie a {
+	background: url(../images/upfw_ico_fonts.png) no-repeat 9px 10px transparent;
+}
+#upthemes_framework #up_main #up_sidebar li.Gestion-des-couleurs a{
+	background: url(../images/upfw_ico_layout.png) no-repeat 9px 10px transparent;
+}
 
 #upthemes_framework #up_main #up_sidebar li a:hover{
-	background-color: #eaeaea;
+	background-color: #dddddd;
 }
 
 #upthemes_framework #up_main #up_sidebar li.selected a{

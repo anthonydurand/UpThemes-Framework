@@ -1,6 +1,6 @@
 <?php if ( is_user_logged_in() ):?>
 
-	<?php $upthemes =  THEME_DIR.'/admin/';?>
+	<?php $upthemes =  THEME_DIR.'/framework/admin/';?>
 	
 	<script type="text/javascript">
 	    var upThemes = "<?php echo THEME_DIR; ?>";
@@ -54,7 +54,7 @@
 						    <div id="<?php echo $shortname?>">
 							<h3><?php echo $title?></h3>
 							<ul class="feature-set">
-							    <?php require_once (THEME_PATH . '/theme-options/'.$shortname.'_'.$order.'.php'); ?>
+							    <?php require_once (THEME_PATH . '/framework/theme-options/'.$shortname.'_'.$order.'.php'); ?>
 							</ul>										
 						    </div><!-- /#<?php echo $shortname?> -->
 						<?php endforeach;
@@ -63,7 +63,7 @@
 					    <div id="import-export">
 						<h3><?php _e("Import/Export","upfw"); ?></h3>
 						<ul class="feature-set">
-						    <?php require_once (THEME_PATH . '/admin/import-export.php'); ?>
+						    <?php require_once (THEME_PATH . '/framework/admin/import-export.php'); ?>
 						</ul>										
 					    </div><!-- /#import-export -->
 				
